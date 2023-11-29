@@ -1,8 +1,7 @@
 extends Area2D
-class_name CounterMeasure
 
 
-@export var speed: int = 200
+@export var speed: int = 300
 
 @onready var flare_jet_tail_anim = $FlareJetTailAnim
 @onready var flare_time_out_anim = $FlareTimeOutAnim
@@ -17,9 +16,6 @@ func _ready():
 	flare_jet_tail_anim.play('default')
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func _physics_process(delta):
 	global_position.y += speed * delta
