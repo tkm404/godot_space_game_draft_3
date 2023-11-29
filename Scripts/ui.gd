@@ -162,8 +162,8 @@ func _on_player_used_bomb():
 func _on_player_used_flare():
 	if flare > 0:
 		flare -= 1
-		flares_amount_update.emit(-1)
+		flares_amount_update.emit(flare)
 	elif flare <= 0:
-		flares_amount_update.emit(0)
+		flares_amount_update.emit(flare)
 		print("out of flares!")
 		flare = 0
