@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cb6jruwwhm6b8"]
+[gd_scene load_steps=3 format=3 uid="uid://cb6jruwwhm6b8"]
 
 [ext_resource type="Script" path="res://Scripts/CounterMeasure.gd" id="1_tww7w"]
+[ext_resource type="PackedScene" uid="uid://baeg7n1c4bbgs" path="res://Scenes/Flare/flare_cm.tscn" id="2_jwge8"]
 
 [node name="CounterMeasure" type="Node2D"]
 script = ExtResource("1_tww7w")
+FLARE_SCENE = ExtResource("2_jwge8")
