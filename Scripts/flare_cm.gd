@@ -2,7 +2,7 @@ extends Area2D
 class_name CounterMeasure
 
 
-@export var speed: int = 300
+@export var speed: int = 200
 
 @onready var flare_jet_tail_anim = $FlareJetTailAnim
 @onready var flare_time_out_anim = $FlareTimeOutAnim
