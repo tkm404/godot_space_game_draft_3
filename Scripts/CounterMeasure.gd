@@ -16,3 +16,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func launch():
+	var flare = FLARE_SCENE.instantiate()
+	flare.rotation_degrees = 135
+	flare.position = flare_launcher.position
+	get_tree().root.add_child(flare)
