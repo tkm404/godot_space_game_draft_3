@@ -19,7 +19,9 @@ func _process(delta):
 
 
 func launch():
+	#var new_direction = get_transform().y
 	var flare = FLARE_SCENE.instantiate()
 	flare.rotation_degrees = 135
 	flare.global_position = flare_launcher.global_position
+	#flare.direction = new_direction
 	get_tree().root.add_child(flare)
