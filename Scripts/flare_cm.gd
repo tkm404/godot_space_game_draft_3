@@ -14,7 +14,7 @@ var direction: Vector2 = Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	flare_jet_tail_anim.play('default')
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,4 +22,14 @@ func _process(delta):
 	pass
 
 
+func _on_timer_timeout():
+	flare_time_out_anim.visible = true
+	flare_time_out_anim.play("default")
+	flare_jet_tail_anim.stop()
+	flare_jet_tail_anim.visible = false
 
+
+func _on_flare_time_out_anim_animation_finished():
+	flare_time_out_anim.stop()
+	flare_time_out_anim.visible = false
+	queue_free()
