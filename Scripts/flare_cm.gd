@@ -21,6 +21,9 @@ func _ready():
 func _process(delta):
 	pass
 
+func _physics_process(delta):
+	global_position.y += speed * delta
+
 
 func _on_timer_timeout():
 	flare_time_out_anim.visible = true
@@ -36,4 +39,4 @@ func _on_flare_time_out_anim_animation_finished():
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	pass # Replace with function body.
+	queue_free()
