@@ -18,7 +18,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	global_position.y += speed * delta
+	position -= transform.y * speed * delta
 
 
 func _on_timer_timeout():
