@@ -75,6 +75,7 @@ func _input(event):
 		if current_flares >= 1:
 			used_flare.emit()
 			print("punching flares!")
+			countermeasure.launch()
 		else:
 			print("out of flares!")
 	if event.is_action_pressed("use_repair"):
