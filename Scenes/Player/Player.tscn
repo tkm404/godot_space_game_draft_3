@@ -38,10 +38,11 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon", "countermeasure")]
 collision_mask = 30
 script = ExtResource("1_tcpra")
 weapon = NodePath("Weapon")
+countermeasure = NodePath("CounterMeasure")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-64, -42)
