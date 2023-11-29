@@ -20,6 +20,7 @@ signal used_battery()
 @export var current_repair: int = 0
 @export var current_battery: int = 0
 @export var weapon: Weapon
+@export var countermeasure: CounterMeasure
 @onready var engine = $Engine
 
 
