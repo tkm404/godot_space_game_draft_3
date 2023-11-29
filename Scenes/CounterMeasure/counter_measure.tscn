@@ -7,5 +7,5 @@
 script = ExtResource("1_tww7w")
 FLARE_SCENE = ExtResource("2_jwge8")
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="FlareLauncher" type="Marker2D" parent="."]
 position = Vector2(10, 20)
