@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bilhup8k4sg5t"]
+
+[ext_resource type="Texture2D" uid="uid://bsfmup8w8t0cg" path="res://Assets/Sprites/PickupSprites/pixil-frame-0 (3).png" id="1_ls6su"]
+[ext_resource type="Script" path="res://Scripts/Flare.gd" id="1_mkskv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yt6fv"]
+
+[node name="Flare" type="Area2D" groups=["Flares"]]
+script = ExtResource("1_mkskv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Flares"]]
+scale = Vector2(0.275, 0.275)
+texture = ExtResource("1_ls6su")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Flares"]]
+shape = SubResource("RectangleShape2D_yt6fv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,60 @@
+[gd_scene load_steps=12 format=3 uid="uid://ddck7p5arigs6"]
+
+[ext_resource type="Texture2D" uid="uid://b7g4cxhk2char" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion1.png" id="1_skov6"]
+[ext_resource type="Texture2D" uid="uid://dfy8b2sv2na1i" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion2.png" id="2_21w0w"]
+[ext_resource type="Texture2D" uid="uid://bxpqaoj6wrbdm" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion3.png" id="3_b0da4"]
+[ext_resource type="Texture2D" uid="uid://cn8m8rjq3eurq" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion4.png" id="4_i7gq8"]
+[ext_resource type="Texture2D" uid="uid://ixhl5a670dp" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion5.png" id="5_18f0o"]
+[ext_resource type="Texture2D" uid="uid://myc13kxkajc" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion6.png" id="6_tbcjj"]
+[ext_resource type="Texture2D" uid="uid://ceyk53whr7mf6" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion7.png" id="7_112f2"]
+[ext_resource type="Texture2D" uid="uid://htqtrrarxwrm" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion8.png" id="8_3l5sg"]
+[ext_resource type="Texture2D" uid="uid://dw5tkf8ykf8b4" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion9.png" id="9_4vi3d"]
+[ext_resource type="Texture2D" uid="uid://4x1jym5yv1y5" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion10.png" id="10_84vkb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ie44"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_skov6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_21w0w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_b0da4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i7gq8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_18f0o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tbcjj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_112f2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3l5sg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_4vi3d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_84vkb")
+}],
+"loop": false,
+"name": &"hull_damage_animation",
+"speed": 10.0
+}]
+
+[node name="HullDamage" type="AnimatedSprite2D"]
+visible = false
+position = Vector2(13, 6)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_8ie44")
+animation = &"hull_damage_animation"
+frame = 9
+frame_progress = 1.0

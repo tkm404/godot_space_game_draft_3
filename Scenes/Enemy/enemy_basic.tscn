@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://2infigfm6c5j"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_basic.gd" id="1_evrbx"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_534ao"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bgpab"]
+
+[node name="enemy_basic" type="Area2D"]
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("1_evrbx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_534ao")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bgpab")
+
+[connection signal="died" from="." to="." method="_on_died"]

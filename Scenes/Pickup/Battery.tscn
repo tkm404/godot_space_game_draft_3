@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3lu8wxcokcaw"]
+
+[ext_resource type="Script" path="res://Scripts/Battery.gd" id="1_mhuea"]
+[ext_resource type="Texture2D" uid="uid://b7fdnhjdbexri" path="res://Assets/Sprites/PickupSprites/pixil-frame-0 (2).png" id="1_riglu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8ppy"]
+size = Vector2(22, 22)
+
+[node name="Battery" type="Area2D" groups=["Batteries"]]
+script = ExtResource("1_mhuea")
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Batteries"]]
+scale = Vector2(0.275, 0.275)
+texture = ExtResource("1_riglu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Batteries"]]
+shape = SubResource("RectangleShape2D_i8ppy")
+debug_color = Color(0.788235, 0.0980392, 1, 0.419608)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

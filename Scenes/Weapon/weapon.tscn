@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1r4vc07dsv3q"]
+
+[ext_resource type="Script" path="res://Scripts/weapon.gd" id="1_0nfir"]
+[ext_resource type="Texture2D" uid="uid://bamnojepr1yjh" path="res://Assets/Sprites/PlayerSprites/SpaceshipKit.png" id="1_g2mkh"]
+[ext_resource type="PackedScene" uid="uid://ua2ar1l6tqjo" path="res://Scenes/Laser/Laser.tscn" id="2_2vc8y"]
+[ext_resource type="PackedScene" uid="uid://bedpp5amlinwp" path="res://Scenes/Missile/missile.tscn" id="3_wfiqj"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_0nfir")
+LASER_SCENE = ExtResource("2_2vc8y")
+MISSILE_SCENE = ExtResource("3_wfiqj")
+
+[node name="WeaponSprite" type="Sprite2D" parent="."]
+position = Vector2(-6, 8)
+scale = Vector2(0.611111, 0.842105)
+texture = ExtResource("1_g2mkh")
+region_enabled = true
+region_rect = Rect2(107.403, 196.405, 9.32401, 19.4588)
+
+[node name="WeaponSprite2" type="Sprite2D" parent="."]
+position = Vector2(6, 8)
+scale = Vector2(0.611111, 0.842105)
+texture = ExtResource("1_g2mkh")
+region_enabled = true
+region_rect = Rect2(107.403, 196.405, 9.32401, 19.4588)
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(-6, -7)
+
+[node name="Muzzle2" type="Marker2D" parent="."]
+position = Vector2(6, -7)
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

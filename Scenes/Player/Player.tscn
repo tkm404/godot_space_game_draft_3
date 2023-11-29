@@ -1,0 +1,119 @@
+[gd_scene load_steps=12 format=3 uid="uid://dp28sm0db1oll"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_tcpra"]
+[ext_resource type="Texture2D" uid="uid://bamnojepr1yjh" path="res://Assets/Sprites/PlayerSprites/SpaceshipKit.png" id="1_wsqm4"]
+[ext_resource type="PackedScene" uid="uid://c1r4vc07dsv3q" path="res://Scenes/Weapon/weapon.tscn" id="2_1wx8a"]
+[ext_resource type="PackedScene" uid="uid://dhqw67fpbxn55" path="res://Scenes/Laser/Laser_Rapid.tscn" id="3_th4a0"]
+[ext_resource type="PackedScene" uid="uid://cy6yo57f3uc3j" path="res://Scenes/UI/shield_break.tscn" id="5_fpf04"]
+[ext_resource type="PackedScene" uid="uid://ddck7p5arigs6" path="res://Scenes/UI/hull_damage.tscn" id="6_to8mi"]
+[ext_resource type="PackedScene" uid="uid://brwmmcbblfjsh" path="res://Scenes/UI/player_exploded.tscn" id="7_e8vuq"]
+[ext_resource type="Texture2D" uid="uid://tnjyg4xtxxni" path="res://Assets/Sprites/UISprites/ExplosionSprites/ShieldPopSprites/Explosion_blue_circle1.png" id="8_7avg8"]
+[ext_resource type="Texture2D" uid="uid://c1auiod68tfuv" path="res://Assets/Sprites/UISprites/ExplosionSprites/ShieldPopSprites/Explosion_blue_circle2.png" id="9_nh45k"]
+[ext_resource type="Texture2D" uid="uid://du8w5dnvd7j0q" path="res://Assets/Sprites/UISprites/ExplosionSprites/ShieldPopSprites/Explosion_blue_circle3.png" id="10_q0drc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2jafv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_7avg8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_nh45k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_q0drc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_q0drc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_nh45k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7avg8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
+collision_mask = 30
+script = ExtResource("1_tcpra")
+weapon = NodePath("Weapon")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-64, -42)
+polygon = PackedVector2Array(52, 28, 52, 39, 56, 44, 36, 61, 36, 68, 55, 59, 57, 62, 71, 62, 73, 59, 82.4168, 63.4606, 92, 68, 92, 60, 72, 44, 76, 39, 76, 28)
+
+[node name="Weapon" parent="." instance=ExtResource("2_1wx8a")]
+position = Vector2(0, -14)
+LASER_RAPID_SCENE = ExtResource("3_th4a0")
+
+[node name="BodySprite" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("1_wsqm4")
+region_enabled = true
+region_rect = Rect2(392.624, 38.695, 14.6506, 23.9037)
+
+[node name="CanardSprite1" type="Sprite2D" parent="BodySprite"]
+position = Vector2(-9, 2)
+texture = ExtResource("1_wsqm4")
+region_enabled = true
+region_rect = Rect2(37.0928, 96.49, 8.28441, 30.8925)
+
+[node name="CanardSprite2" type="Sprite2D" parent="BodySprite"]
+position = Vector2(9, 2)
+texture = ExtResource("1_wsqm4")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(37.0928, 97.1126, 8.28441, 30.2699)
+
+[node name="WingSprite2" type="Sprite2D" parent="BodySprite"]
+position = Vector2(19, 18)
+rotation = 1.96426
+scale = Vector2(0.84001, 0.800012)
+texture = ExtResource("1_wsqm4")
+region_enabled = true
+region_rect = Rect2(160.344, 63.7328, 16.2212, 32.1527)
+
+[node name="WingSprite1" type="Sprite2D" parent="BodySprite"]
+position = Vector2(-19, 18)
+rotation = 1.15311
+scale = Vector2(0.84001, 0.800012)
+texture = ExtResource("1_wsqm4")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(160.344, 63.7328, 16.2212, 32.1527)
+
+[node name="FuselageSprite1" type="Sprite2D" parent="BodySprite"]
+position = Vector2(0, 14)
+texture = ExtResource("1_wsqm4")
+region_enabled = true
+region_rect = Rect2(388.658, 78.8255, 22.3832, 16.0632)
+
+[node name="Engine" type="Node2D" parent="."]
+
+[node name="EngineSprite" type="Sprite2D" parent="Engine"]
+position = Vector2(0, 14)
+texture = ExtResource("1_wsqm4")
+region_enabled = true
+region_rect = Rect2(37.7832, 176.007, 19.9993, 15.559)
+
+[node name="ShieldBreak" parent="." instance=ExtResource("5_fpf04")]
+
+[node name="HullDamage" parent="." instance=ExtResource("6_to8mi")]
+
+[node name="PlayerExploded" parent="." instance=ExtResource("7_e8vuq")]
+
+[node name="ShieldDamagedAnim" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_2jafv")
+frame = 5
+frame_progress = 1.0
+
+[connection signal="animation_finished" from="ShieldBreak" to="." method="_on_shield_break_animation_finished"]
+[connection signal="animation_finished" from="HullDamage" to="." method="_on_hull_damage_animation_finished"]
+[connection signal="animation_finished" from="PlayerExploded" to="." method="_on_player_exploded_animation_finished"]
+[connection signal="animation_finished" from="ShieldDamagedAnim" to="." method="_on_shield_damaged_anim_animation_finished"]

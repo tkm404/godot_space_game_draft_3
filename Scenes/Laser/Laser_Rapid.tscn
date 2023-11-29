@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhqw67fpbxn55"]
+
+[ext_resource type="Script" path="res://Scripts/laser_rapid.gd" id="1_40byv"]
+[ext_resource type="Texture2D" uid="uid://15t2vn58bq74" path="res://Assets/Sprites/LaserSprites/beams.png" id="2_1q61t"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q8prr"]
+radius = 2.0
+
+[node name="Laser_Rapid" type="Area2D"]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_40byv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 0.500001)
+scale = Vector2(1, 1.51613)
+texture = ExtResource("2_1q61t")
+region_enabled = true
+region_rect = Rect2(36.512, 168.973, 19.3237, 31.4854)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5.96046e-08)
+shape = SubResource("CapsuleShape2D_q8prr")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 28)
+scale = Vector2(0.35, 0.4)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

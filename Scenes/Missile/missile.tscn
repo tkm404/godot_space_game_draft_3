@@ -1,0 +1,102 @@
+[gd_scene load_steps=15 format=3 uid="uid://bedpp5amlinwp"]
+
+[ext_resource type="Script" path="res://Scripts/missile.gd" id="1_chpaj"]
+[ext_resource type="Texture2D" uid="uid://5fal2q6dhgrg" path="res://Assets/Sprites/MissileSprites/SpaceshipKit.png" id="2_2y4qt"]
+[ext_resource type="Texture2D" uid="uid://dxmqw7fohixh6" path="res://Assets/Sprites/MissileSprites/beams.png" id="3_pypop"]
+[ext_resource type="Texture2D" uid="uid://83u5fpua6kpq" path="res://Assets/Sprites/UISprites/ExplosionSprites/MissileExplosionSprites/3.png" id="4_svs22"]
+[ext_resource type="Texture2D" uid="uid://og72baxubu4o" path="res://Assets/Sprites/UISprites/ExplosionSprites/MissileExplosionSprites/4.png" id="5_ojb8k"]
+[ext_resource type="Texture2D" uid="uid://b4du5ymnmg7ox" path="res://Assets/Sprites/UISprites/ExplosionSprites/MissileExplosionSprites/5.png" id="6_jifvb"]
+[ext_resource type="Texture2D" uid="uid://qqyu1gg5s1nc" path="res://Assets/Sprites/UISprites/ExplosionSprites/MissileExplosionSprites/6.png" id="7_w0pqf"]
+[ext_resource type="Texture2D" uid="uid://cmatgqbtgibpa" path="res://Assets/Sprites/UISprites/ExplosionSprites/MissileExplosionSprites/7.png" id="8_nrb34"]
+[ext_resource type="Texture2D" uid="uid://br3m6ccee7luf" path="res://Assets/Sprites/UISprites/ExplosionSprites/MissileExplosionSprites/8.png" id="9_5hw8y"]
+[ext_resource type="Texture2D" uid="uid://fiovq6kym1qw" path="res://Assets/Sprites/UISprites/ExplosionSprites/MissileExplosionSprites/9.png" id="10_e8ftt"]
+[ext_resource type="Texture2D" uid="uid://b2n48cuby224m" path="res://Assets/Sprites/UISprites/ExplosionSprites/MissileExplosionSprites/10.png" id="11_67q2s"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_le0mv"]
+radius = 68.0
+height = 136.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4iu6k"]
+radius = 4.0
+height = 12.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h52rx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_svs22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ojb8k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jifvb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_w0pqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_nrb34")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5hw8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_e8ftt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_67q2s")
+}],
+"loop": false,
+"name": &"missile_explosion_anim",
+"speed": 10.0
+}]
+
+[node name="Missile" type="Area2D"]
+collision_layer = 2
+collision_mask = 12
+script = ExtResource("1_chpaj")
+
+[node name="Missilebody" type="Sprite2D" parent="."]
+texture = ExtResource("2_2y4qt")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(74.9158, 194.653, 10.2939, 21.0665)
+
+[node name="Missileengine" type="Sprite2D" parent="."]
+position = Vector2(0, 9)
+scale = Vector2(0.519999, 0.96)
+texture = ExtResource("3_pypop")
+region_enabled = true
+region_rect = Rect2(117.455, 134.569, 19.0534, 24.5938)
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_le0mv")
+disabled = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 20)
+scale = Vector2(0.25, 0.25)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.75
+one_shot = true
+autostart = true
+
+[node name="ImpactDetector" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_4iu6k")
+
+[node name="Missile_Explosion_Animation" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(2.38419e-07, 4.99999)
+scale = Vector2(0.257813, 0.28125)
+sprite_frames = SubResource("SpriteFrames_h52rx")
+animation = &"missile_explosion_anim"
+frame = 7
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="Missile_Explosion_Animation" to="." method="_on_missile_explosion_animation_animation_finished"]

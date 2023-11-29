@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3pptfdqp5mha"]
+
+[ext_resource type="Script" path="res://Scripts/Repair.gd" id="1_tpb4a"]
+[ext_resource type="Texture2D" uid="uid://hs8vqjfnr030" path="res://Assets/Sprites/PickupSprites/pixil-frame-0 (1).png" id="2_2hv7m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_03oj0"]
+radius = 12.0
+
+[node name="Repair" type="Area2D" groups=["Repairs"]]
+collision_layer = 16
+script = ExtResource("1_tpb4a")
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Repairs"]]
+scale = Vector2(0.275, 0.275)
+texture = ExtResource("2_2hv7m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Repairs"]]
+shape = SubResource("CircleShape2D_03oj0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

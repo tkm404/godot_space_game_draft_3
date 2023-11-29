@@ -1,0 +1,151 @@
+[gd_scene load_steps=31 format=3 uid="uid://c7vdnq23tl853"]
+
+[ext_resource type="Script" path="res://Scripts/asteroid.gd" id="1_or4pr"]
+[ext_resource type="Texture2D" uid="uid://lif2ecugttbv" path="res://Assets/Sprites/EnemySprites/NormAsteroid.png" id="2_p064r"]
+[ext_resource type="PackedScene" uid="uid://ddck7p5arigs6" path="res://Scenes/UI/hull_damage.tscn" id="2_t2e6s"]
+[ext_resource type="PackedScene" uid="uid://c3lu8wxcokcaw" path="res://Scenes/Pickup/Battery.tscn" id="3_5nwte"]
+[ext_resource type="Texture2D" uid="uid://bgsdtpmcggwip" path="res://Assets/Sprites/UISprites/ExplosionSprites/ExplodedSprites/Circle_explosion10.png" id="3_cuheh"]
+[ext_resource type="Texture2D" uid="uid://b7g4cxhk2char" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion1.png" id="4_jfcao"]
+[ext_resource type="PackedScene" uid="uid://g14nsg674121" path="res://Scenes/Pickup/Bomb.tscn" id="4_s7n8o"]
+[ext_resource type="Texture2D" uid="uid://dfy8b2sv2na1i" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion2.png" id="5_ireea"]
+[ext_resource type="PackedScene" uid="uid://d3pptfdqp5mha" path="res://Scenes/Pickup/Repair.tscn" id="5_p754w"]
+[ext_resource type="Texture2D" uid="uid://bxpqaoj6wrbdm" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion3.png" id="6_dvenl"]
+[ext_resource type="PackedScene" uid="uid://bilhup8k4sg5t" path="res://Scenes/Pickup/Flare.tscn" id="6_sakna"]
+[ext_resource type="Texture2D" uid="uid://cn8m8rjq3eurq" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion4.png" id="7_poy7j"]
+[ext_resource type="Texture2D" uid="uid://ixhl5a670dp" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion5.png" id="8_5qjkm"]
+[ext_resource type="Texture2D" uid="uid://myc13kxkajc" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion6.png" id="9_7cekr"]
+[ext_resource type="Texture2D" uid="uid://ceyk53whr7mf6" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion7.png" id="10_m53f7"]
+[ext_resource type="Texture2D" uid="uid://htqtrrarxwrm" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion8.png" id="11_j2ifm"]
+[ext_resource type="Texture2D" uid="uid://dw5tkf8ykf8b4" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion9.png" id="12_ilaml"]
+[ext_resource type="Texture2D" uid="uid://4x1jym5yv1y5" path="res://Assets/Sprites/UISprites/ExplosionSprites/HullDamagedSprites/Explosion10.png" id="13_wk6k2"]
+[ext_resource type="Texture2D" uid="uid://sypthfnuneh8" path="res://Assets/Sprites/UISprites/ExplosionSprites/ExplodedSprites/Circle_explosion1.png" id="14_b8ekq"]
+[ext_resource type="Texture2D" uid="uid://b3ml2veagp2vn" path="res://Assets/Sprites/UISprites/ExplosionSprites/ExplodedSprites/Circle_explosion2.png" id="15_xv1ns"]
+[ext_resource type="Texture2D" uid="uid://bmv0yxo1mdnj7" path="res://Assets/Sprites/UISprites/ExplosionSprites/ExplodedSprites/Circle_explosion3.png" id="16_j3rar"]
+[ext_resource type="Texture2D" uid="uid://caopwat2t2p4k" path="res://Assets/Sprites/UISprites/ExplosionSprites/ExplodedSprites/Circle_explosion4.png" id="17_av43s"]
+[ext_resource type="Texture2D" uid="uid://btneb0yveagq7" path="res://Assets/Sprites/UISprites/ExplosionSprites/ExplodedSprites/Circle_explosion5.png" id="18_axiji"]
+[ext_resource type="Texture2D" uid="uid://cm4luonueohoc" path="res://Assets/Sprites/UISprites/ExplosionSprites/ExplodedSprites/Circle_explosion6.png" id="19_0cp6g"]
+[ext_resource type="Texture2D" uid="uid://wxfod4f48j1i" path="res://Assets/Sprites/UISprites/ExplosionSprites/ExplodedSprites/Circle_explosion7.png" id="20_np50c"]
+[ext_resource type="Texture2D" uid="uid://46r3qepgtlv1" path="res://Assets/Sprites/UISprites/ExplosionSprites/ExplodedSprites/Circle_explosion8.png" id="21_cokl2"]
+[ext_resource type="Texture2D" uid="uid://7feuwdynsufv" path="res://Assets/Sprites/UISprites/ExplosionSprites/ExplodedSprites/Circle_explosion9.png" id="22_ptxui"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3uppk"]
+radius = 36.3749
+height = 105.84
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0odjf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jfcao")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ireea")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dvenl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_poy7j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5qjkm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7cekr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_m53f7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_j2ifm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ilaml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_wk6k2")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3gyir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_b8ekq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_xv1ns")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_j3rar")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_av43s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_axiji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_0cp6g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_np50c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_cokl2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_ptxui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cuheh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Asteroid" type="Area2D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_or4pr")
+hp = 150
+shields = 0
+pickup_scenes = Array[PackedScene]([ExtResource("2_t2e6s"), ExtResource("3_5nwte"), ExtResource("4_s7n8o"), ExtResource("5_p754w"), ExtResource("6_sakna")])
+
+[node name="AsteroidSprite" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_p064r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -9)
+rotation = 0.959318
+shape = SubResource("CapsuleShape2D_3uppk")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -87)
+
+[node name="HullDamagedAnim" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -17)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_0odjf")
+frame = 9
+frame_progress = 1.0
+
+[node name="DestroyedAnim" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-5, -10)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_3gyir")
+frame = 9
+frame_progress = 1.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="hullDamaged" from="." to="." method="_on_hull_damaged"]
+[connection signal="unitDestroyed" from="." to="." method="_on_unit_destroyed"]
+[connection signal="animation_finished" from="HullDamagedAnim" to="." method="_on_hull_damaged_anim_animation_finished"]
+[connection signal="animation_finished" from="DestroyedAnim" to="." method="_on_destroyed_anim_animation_finished"]

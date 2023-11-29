@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://g14nsg674121"]
+
+[ext_resource type="Script" path="res://Scripts/bomb.gd" id="1_abasl"]
+[ext_resource type="Texture2D" uid="uid://bnnulm1la4dr3" path="res://Assets/Sprites/PickupSprites/pixil-frame-0 (4).png" id="2_31iyp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_biahd"]
+size = Vector2(20.0091, 20.2887)
+
+[node name="Bomb" type="Area2D" groups=["Bombs"]]
+script = ExtResource("1_abasl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_31iyp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.245428, -0.257436)
+rotation = 0.774268
+shape = SubResource("RectangleShape2D_biahd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,57 @@
+[gd_scene load_steps=12 format=3 uid="uid://cy6yo57f3uc3j"]
+
+[ext_resource type="Texture2D" uid="uid://tnjyg4xtxxni" path="res://Assets/Sprites/UISprites/ExplosionSprites/ShieldPopSprites/Explosion_blue_circle1.png" id="1_y2uos"]
+[ext_resource type="Texture2D" uid="uid://c1auiod68tfuv" path="res://Assets/Sprites/UISprites/ExplosionSprites/ShieldPopSprites/Explosion_blue_circle2.png" id="2_kg686"]
+[ext_resource type="Texture2D" uid="uid://du8w5dnvd7j0q" path="res://Assets/Sprites/UISprites/ExplosionSprites/ShieldPopSprites/Explosion_blue_circle3.png" id="3_skuq0"]
+[ext_resource type="Texture2D" uid="uid://cj0j6h107jxhl" path="res://Assets/Sprites/UISprites/ExplosionSprites/ShieldPopSprites/Explosion_blue_circle4.png" id="4_baxkg"]
+[ext_resource type="Texture2D" uid="uid://ceumx0kq45f8m" path="res://Assets/Sprites/UISprites/ExplosionSprites/ShieldPopSprites/Explosion_blue_circle5.png" id="5_hv6c5"]
+[ext_resource type="Texture2D" uid="uid://gncdbf1ovii4" path="res://Assets/Sprites/UISprites/ExplosionSprites/ShieldPopSprites/Explosion_blue_circle6.png" id="6_kd6fb"]
+[ext_resource type="Texture2D" uid="uid://cgle001cc4g7k" path="res://Assets/Sprites/UISprites/ExplosionSprites/ShieldPopSprites/Explosion_blue_circle7.png" id="7_5tu74"]
+[ext_resource type="Texture2D" uid="uid://bl3h3o6c3ypwl" path="res://Assets/Sprites/UISprites/ExplosionSprites/ShieldPopSprites/Explosion_blue_circle8.png" id="8_ahrej"]
+[ext_resource type="Texture2D" uid="uid://c4qqutvndqo15" path="res://Assets/Sprites/UISprites/ExplosionSprites/ShieldPopSprites/Explosion_blue_circle9.png" id="9_iigin"]
+[ext_resource type="Texture2D" uid="uid://bo8lfcwmke64c" path="res://Assets/Sprites/UISprites/ExplosionSprites/ShieldPopSprites/Explosion_blue_circle10.png" id="10_d48el"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_risfl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_y2uos")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kg686")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_skuq0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_baxkg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hv6c5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kd6fb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5tu74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ahrej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_iigin")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_d48el")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="ShieldBreak" type="AnimatedSprite2D"]
+visible = false
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_risfl")
+frame = 9
+frame_progress = 1.0
