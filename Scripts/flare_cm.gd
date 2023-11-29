@@ -33,3 +33,7 @@ func _on_flare_time_out_anim_animation_finished():
 	flare_time_out_anim.stop()
 	flare_time_out_anim.visible = false
 	queue_free()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	pass # Replace with function body.
