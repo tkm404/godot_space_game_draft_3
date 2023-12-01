@@ -15,6 +15,7 @@ signal lockedOn
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var player = get_parent().get_node("Player")
 @onready var lock_on_timer = $LockOnTimer
+@onready var radar_sight = $RadarSight
 
 
 var player_in_range
@@ -88,7 +89,7 @@ func _on_radar_sight_body_exited(body):
 func SightCheck():
 	if player_in_range == true:
 		var space_state = get_world_2d().direct_space_state
-		var params = PhysicsRayQueryParameters2D.create(global_position, player.global_position, collision_mask, [self])
+		var params = PhysicsRayQueryParameters2D.create(position, player.position, collision_mask, [self, radar_sight])
 		params.set_collide_with_areas(true)
 		var sight_line = space_state.intersect_ray(params)
 		if sight_line:
