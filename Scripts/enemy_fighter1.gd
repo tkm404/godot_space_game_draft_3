@@ -1,8 +1,9 @@
 extends "res://Scripts/enemy_basic.gd"
 
+signal lockedOn
+
 
 @export var ENEMY_LASER_SCENE: PackedScene
-
 
 
 @onready var shoot_timer = $ShootTimer
@@ -13,6 +14,8 @@ extends "res://Scripts/enemy_basic.gd"
 @onready var body_sprite = $BodySprite
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var player = get_parent().get_node("Player")
+@onready var lock_on_timer = $LockOnTimer
+
 
 var player_in_range
 var player_in_sight
@@ -83,18 +86,23 @@ func _on_radar_sight_body_exited(body):
 
 
 func SightCheck():
-	if player_in_range:
+	if player_in_range == true:
 		var space_state = get_world_2d().direct_space_state
-		var params = PhysicsRayQueryParameters2D.new()
-		params.from = position
-		params.to = player.position
-		params.exclude = [self]
-		params.collision_mask = collision_mask
+		var params = PhysicsRayQueryParameters2D.create(global_position, player.global_position, collision_mask, [self])
+		params.set_collide_with_areas(true)
 		var sight_line = space_state.intersect_ray(params)
 		if sight_line:
 			if sight_line.collider.name == "Player":
 				player_in_sight = true
 				print("player in sight: ", player_in_sight)
+				lock_on_timer.start()
 			else:
+				print(sight_line.collider.name)
 				player_in_sight = false
 				print("player in sight: ", player_in_sight)
+				lock_on_timer.stop()
+
+
+func _on_lock_on_timer_timeout():
+	lockedOn.emit()
+	print("missile lock!")
