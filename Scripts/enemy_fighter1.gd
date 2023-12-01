@@ -11,6 +11,14 @@ extends "res://Scripts/enemy_basic.gd"
 @onready var shield_break_anim = $ShieldBreakAnim
 @onready var destroyed_anim = $DestroyedAnim
 @onready var body_sprite = $BodySprite
+@onready var player = get_parent().get_node("Player")
+
+var player_in_range
+var player_in_sight
+
+
+func _physics_process(delta):
+	SightCheck()
 
 
 func _on_timer_timeout():
@@ -56,3 +64,34 @@ func _on_destroyed_anim_animation_finished():
 	destroyed_anim.stop()
 	destroyed_anim.visible = false
 	queue_free()
+
+
+func _on_radar_sight_body_entered(body):
+	if body == player:
+		player_in_range = true
+		print("player in range: ", player_in_range)
+
+
+func _on_radar_sight_body_exited(body):
+	if body == player:
+		player_in_range = false
+		print("player_in_range: ", player_in_range)
+		
+
+
+func SightCheck():
+	if player_in_range:
+		var space_state = get_world_2d().direct_space_state
+		var params = PhysicsRayQueryParameters2D.new()
+		params.from = position
+		params.to = player.position
+		params.exclude = [self]
+		params.collision_mask = collision_mask
+		var sight_line = space_state.intersect_ray(params)
+		if sight_line:
+			if sight_line.collider.name == "Player":
+				player_in_sight = true
+				print("player in sight: ", player_in_sight)
+			else:
+				player_in_sight = false
+				print("player in sight: ", player_in_sight)
