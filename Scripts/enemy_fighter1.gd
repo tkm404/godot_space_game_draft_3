@@ -11,6 +11,7 @@ extends "res://Scripts/enemy_basic.gd"
 @onready var shield_break_anim = $ShieldBreakAnim
 @onready var destroyed_anim = $DestroyedAnim
 @onready var body_sprite = $BodySprite
+@onready var collision_shape_2d = $CollisionShape2D
 @onready var player = get_parent().get_node("Player")
 
 var player_in_range
@@ -57,6 +58,8 @@ func _on_shield_break_anim_animation_finished():
 func _on_unit_destroyed():
 	body_sprite.visible = false
 	destroyed_anim.visible = true
+	collision_shape_2d.set_deferred("disabled", true)
+	shoot_timer.stop()
 	destroyed_anim.play("default")
 
 
