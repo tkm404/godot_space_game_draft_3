@@ -3,6 +3,7 @@ extends "res://Scripts/enemy_basic.gd"
 @onready var hull_damaged_anim = $HullDamagedAnim
 @onready var destroyed_anim = $DestroyedAnim
 @onready var asteroid_sprite = $AsteroidSprite
+@onready var collision_shape_2d = $CollisionShape2D
 
 
 
@@ -21,6 +22,7 @@ func _on_hull_damaged():
 func _on_unit_destroyed():
 	asteroid_sprite.visible = false
 	destroyed_anim.visible = true
+	collision_shape_2d.set_deferred("disabled", true)
 	destroyed_anim.play("default")
 
 
