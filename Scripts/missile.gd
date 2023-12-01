@@ -1,6 +1,6 @@
 extends Laser
 
-
+@export var steer_force = 50.0
 
 @onready var hit_box = $HitBox
 @onready var missile_explosion_animation = $Missile_Explosion_Animation
@@ -10,11 +10,13 @@ extends Laser
 
 
 
+
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
 func _ready():
 	missile_explosion_animation.stop()
+
 
 func _on_area_entered(area):
 	if area is Enemy:
