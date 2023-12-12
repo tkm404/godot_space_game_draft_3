@@ -1,10 +1,11 @@
 extends "res://Scripts/enemy_basic.gd"
 
 signal lockedOn
+signal inSight
 
+enum STATES {READY, FIRING, RELOADING, LOCKING, LOCKED }
 
 @export var ENEMY_LASER_SCENE: PackedScene
-
 
 @onready var shoot_timer = $ShootTimer
 @onready var enemy_muzzle = $EnemyMuzzle
@@ -16,10 +17,12 @@ signal lockedOn
 @onready var player = get_parent().get_node("Player")
 @onready var lock_on_timer = $LockOnTimer
 @onready var radar_sight = $RadarSight
+@onready var missile_reload_timer = $MissileReloadTimer
 
 
 var player_in_range
 var player_in_sight
+var state: STATES = STATES.READY
 
 
 func _physics_process(delta):
@@ -82,28 +85,69 @@ func _on_radar_sight_body_entered(body):
 func _on_radar_sight_body_exited(body):
 	if body == player:
 		player_in_range = false
-		print("player_in_range: ", player_in_range)
+		change_state(STATES.READY)
+		lock_on_timer.stop()
+		print("player in range: ", player_in_range)
+		print("broke missile lock!")
 		
+
+
+func _on_lock_on_timer_timeout():
+	if state == STATES.LOCKING:
+		lockedOn.emit()
+
+
+func _on_locked_on():
+	change_state(STATES.LOCKED)
+	print("missile lock!")
+	missile_reload_timer.start()
+
+
+func _on_missile_reload_timer_timeout():
+	launchMissile()
+
+
+func change_state(new_state: STATES):
+	state = new_state
 
 
 func SightCheck():
 	if player_in_range == true:
 		var space_state = get_world_2d().direct_space_state
-		var params = PhysicsRayQueryParameters2D.create(position, player.position, collision_mask, [self, radar_sight])
+		var params = PhysicsRayQueryParameters2D.create(global_position, player.global_position, collision_mask, [self, radar_sight])
 		params.set_collide_with_areas(true)
 		var sight_line = space_state.intersect_ray(params)
 		if sight_line:
-			if sight_line.collider.name == "Player":
-				player_in_sight = true
-				print("player in sight: ", player_in_sight)
-				lock_on_timer.start()
-			else:
-				print(sight_line.collider.name)
-				player_in_sight = false
-				print("player in sight: ", player_in_sight)
-				lock_on_timer.stop()
+			if state != STATES.LOCKING && state != STATES.FIRING && state != STATES.LOCKED:
+				if sight_line.collider.name == "Player":
+					change_state(STATES.LOCKING)
+					player_in_sight = true
+					print("player in sight: ", player_in_sight)
+					print("locking on...")
+					lock_on_timer.start()
+				else:
+					change_state(STATES.READY)
+					print(sight_line.collider.name)
+					player_in_sight = false
+					print("player in sight: ", player_in_sight)
 
 
-func _on_lock_on_timer_timeout():
-	lockedOn.emit()
-	print("missile lock!")
+func launchMissile():
+	if state == STATES.FIRING:
+		return
+	change_state(STATES.FIRING)
+	if missile_reload_timer.is_stopped():
+		print("launching missile!")
+	elif !missile_reload_timer.is_stopped():
+		print("readying missile")
+	
+	change_state(STATES.READY)
+
+
+
+
+
+
+
+
+

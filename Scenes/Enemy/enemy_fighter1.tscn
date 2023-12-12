@@ -238,9 +238,13 @@ polygon = PackedVector2Array(-0.666667, 2, -64, -150.667, 64, -150.667)
 [node name="LockOnTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="MissileReloadTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="died" from="." to="." method="_on_died"]
 [connection signal="hullDamaged" from="." to="." method="_on_hull_damaged"]
+[connection signal="lockedOn" from="." to="." method="_on_locked_on"]
 [connection signal="shieldBroke" from="." to="." method="_on_shield_broke"]
 [connection signal="unitDestroyed" from="." to="." method="_on_unit_destroyed"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_timer_timeout"]
@@ -250,3 +254,4 @@ one_shot = true
 [connection signal="body_entered" from="RadarSight" to="." method="_on_radar_sight_body_entered"]
 [connection signal="body_exited" from="RadarSight" to="." method="_on_radar_sight_body_exited"]
 [connection signal="timeout" from="LockOnTimer" to="." method="_on_lock_on_timer_timeout"]
+[connection signal="timeout" from="MissileReloadTimer" to="." method="_on_missile_reload_timer_timeout"]
